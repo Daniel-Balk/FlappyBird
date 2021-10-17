@@ -14,6 +14,7 @@ namespace FlappyBird
         [STAThread]
         static void Main()
         {
+            MemourySaver.Save();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
