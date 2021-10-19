@@ -46,10 +46,6 @@ namespace FlappyBird
                                     var g = Graphics.FromImage(image);
                                     g.Clear(BackColor);
                                     FlappyBird.PutOn(g, Width, Height);
-                                    BeginInvoke(new Action(() =>
-                                    {
-
-                                    }));
                                     var cg = CreateGraphics();
                                     cg.InterpolationMode = InterpolationMode.NearestNeighbor;
                                     cg.DrawImage(image, 0, 0, Width, Height);
@@ -83,9 +79,31 @@ namespace FlappyBird
             }
         }
 
+        protected override void OnMouseHover(EventArgs e)
+        {
+            FlappyBird.Hovering(PointToClient(Cursor.Position));
+        }
+        protected override void OnMouseMove(MouseEventArgs e)
+        {
+            FlappyBird.Hovering(PointToClient(Cursor.Position));
+        }
+        protected override void OnLeave(EventArgs e)
+        {
+            FlappyBird.Hovering(PointToClient(Cursor.Position));
+        }
+        protected override void OnMouseLeave(EventArgs e)
+        {
+            FlappyBird.Hovering(PointToClient(Cursor.Position));
+        }
+
         protected override bool IsInputKey(Keys keyData)
         {
             return true;
+        }
+
+        protected override void OnClick(EventArgs e)
+        {
+            FlappyBird.Click(PointToClient(Cursor.Position));
         }
 
         protected override void OnKeyDown(KeyEventArgs e)

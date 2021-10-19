@@ -11,5 +11,6 @@ namespace FlappyBird
         void BeforeRender();
         void Update();
         void Click();
+        void Hover();
     }
 }

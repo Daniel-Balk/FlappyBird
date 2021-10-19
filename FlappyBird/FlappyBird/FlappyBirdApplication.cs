@@ -11,6 +11,7 @@ namespace FlappyBird
 {
     public class FlappyBirdApplication
     {
+
         static List<IFlappyCompound> Compounds { get; set; } = new List<IFlappyCompound>();
         public static int MainMenuZ = 404;
         public static int MainMenuButtonZ = 500;
@@ -30,6 +31,7 @@ namespace FlappyBird
             Render(g, width, height);
         }
         public static Color BackColor { get; set; } = Color.FromArgb(0x00, 0x95, 0xDB);
+        public static bool Playing { get; set; } = false;
         public static void Render(Graphics g, int width, int height)
         {
             if (!Values[0])
@@ -48,6 +50,8 @@ namespace FlappyBird
                 var cl = control.Value;
                 cl.DoPhysics();
                 cl.BeforeRender();
+                if (cl.GetRectangle().IntersectsWith(new Rectangle(lastHov, new System.Drawing.Size(8, 8))))
+                    cl.Hover();
                 var render = cl.GetFrame();
                 var rect = cl.GetRectangle();
                 g.DrawImage(render, rect.X, rect.Y, rect.Width, rect.Height);
@@ -70,9 +74,12 @@ namespace FlappyBird
             Values[1] = true;
         }
 
+        static readonly MainMenuPlayButton plb = new MainMenuPlayButton();
+        static readonly MainMenuDisplay mmd = new MainMenuDisplay();
         public static void Setup()
         {
-            Compounds.Add(new MainMenuDisplay());
+            Compounds.Add(mmd);
+            Compounds.Add(plb);
             Thread upd = null;
             upd = new Thread(new ThreadStart(() =>
         {
@@ -89,6 +96,25 @@ namespace FlappyBird
             upd.Abort();
         }));
             upd.Start();
+        }
+
+        public void Hovering(Point point)
+        {
+            lastHov = point;
+        }
+        static Point lastHov = new Point(0, 0);
+
+        public void Click(Point point)
+        {
+            PerformClick(point);
+        }
+        public static void PerformClick(Point p)
+        {
+            foreach (var cl in Compounds)
+            {
+                if (cl.GetRectangle().IntersectsWith(new Rectangle(p, new System.Drawing.Size(8, 8))))
+                    cl.Click();
+            }
         }
     }
 }

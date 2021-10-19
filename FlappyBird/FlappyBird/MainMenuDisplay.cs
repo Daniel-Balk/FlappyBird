@@ -45,5 +45,10 @@ namespace FlappyBird
         {
 
         }
+
+        public void Hover()
+        {
+            
+        }
     }
 }

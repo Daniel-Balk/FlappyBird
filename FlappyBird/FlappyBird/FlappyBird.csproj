@@ -59,6 +59,7 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="IFlappyCompound.cs" />
     <Compile Include="MainMenuDisplay.cs" />
+    <Compile Include="MainMenuPlayButton.cs" />
     <Compile Include="MapReader.cs" />
     <Compile Include="MemourySaver.cs" />
     <Compile Include="Program.cs" />
@@ -91,7 +92,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\HoverPlayButton.png" />
     <Content Include="Resources\MainMenu.png" />
+    <None Include="Resources\PlayButton.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
