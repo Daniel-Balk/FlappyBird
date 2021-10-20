@@ -18,7 +18,7 @@ namespace FlappyBird
 
         public void DoPhysics()
         {
-
+            
         }
 
         public Bitmap GetFrame()
@@ -35,7 +35,7 @@ namespace FlappyBird
             return b;
         }
 
-        Rectangle rect = new Rectangle(0, 0, 128, 128);
+        Rectangle rect = new Rectangle(1200/2-128/2, 900 / 2 - 128 / 2, 128, 128);
         public Rectangle GetRectangle()
         {
             return rect;

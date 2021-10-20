@@ -80,6 +80,7 @@ namespace FlappyBird
         {
             Compounds.Add(mmd);
             Compounds.Add(plb);
+            Compounds.Add(new Tube());
             Thread upd = null;
             upd = new Thread(new ThreadStart(() =>
         {

@@ -19,9 +19,11 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>
+    </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -64,6 +66,7 @@
     <Compile Include="MemourySaver.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tube.cs" />
     <EmbeddedResource Include="FlappyWindow.resx">
       <DependentUpon>FlappyWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -92,7 +95,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\TopRight.png" />
+    <None Include="Resources\TopLeft.png" />
+    <None Include="Resources\TopCenter.png" />
     <None Include="Resources\HoverPlayButton.png" />
+    <None Include="Resources\Center.png" />
+    <None Include="Resources\CenterLeft.png" />
+    <None Include="Resources\CenterRight.png" />
     <Content Include="Resources\MainMenu.png" />
     <None Include="Resources\PlayButton.png" />
   </ItemGroup>
