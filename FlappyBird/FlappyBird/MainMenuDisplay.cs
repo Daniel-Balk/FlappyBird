@@ -25,7 +25,8 @@ namespace FlappyBird
             Bitmap b = new Bitmap(GetRectangle().Width, GetRectangle().Height);
             var g = Graphics.FromImage(b);
             if (Show)
-                g.DrawImage(Properties.Resources.MainMenu, 0, 0);
+                if (!FlappyBirdApplication.Playing)
+                    g.DrawImage(Properties.Resources.MainMenu, 0, 0);
             g.Dispose();
             return b;
         }

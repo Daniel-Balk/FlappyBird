@@ -25,10 +25,11 @@ namespace FlappyBird
             
         }
 
-        public RotateFlipType Rotation { get; set; } = RotateFlipType.RotateNoneFlipNone;
+        public int Zoom { get; set; } = 4;
+        public RotateFlipType Rotation { get; set; } = RotateFlipType.RotateNoneFlipY;
         public Bitmap GetFrame()
         {
-            Bitmap b = new Bitmap(Rectangle.Width, Rectangle.Height);
+            Bitmap b = new Bitmap(Rectangle.Width / Zoom, Rectangle.Height / Zoom);
             var g = Graphics.FromImage(b);
 
             g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
@@ -40,22 +41,33 @@ namespace FlappyBird
             var cencent = Resources.Center;
             var cenrigh = Resources.CenterRight;
 
-            g.DrawImage(topleft, 0, 0,topleft.Width,topleft.Height);
-            g.DrawImage(cenleft, 0, topleft.Height, cenleft.Width, b.Height - topleft.Height);
+            if (FlappyBirdApplication.Playing)
+            {
+                g.DrawImage(topleft, 0, 0, topleft.Width, topleft.Height);
+                g.DrawImage(cenleft, 0, topleft.Height, cenleft.Width, b.Height - topleft.Height);
 
-            g.DrawImage(topcent, topleft.Width, 0, b.Width - topleft.Width - toprigh.Width, topcent.Height);
-            g.DrawImage(cencent, topleft.Width, topcent.Height, b.Width - topleft.Width - toprigh.Width, b.Height - topcent.Height);
+                g.DrawImage(topcent, topleft.Width, 0, b.Width - topleft.Width - toprigh.Width, topcent.Height);
+                g.DrawImage(cencent, topleft.Width, topcent.Height, b.Width - topleft.Width - toprigh.Width, b.Height - topcent.Height);
 
-            g.DrawImage(toprigh, b.Width - toprigh.Width - 1, 0);
-            g.DrawImage(cenrigh, b.Width - toprigh.Width - 1, toprigh.Height, cenrigh.Width, b.Height - toprigh.Height);
+                g.DrawImage(toprigh, b.Width - toprigh.Width - 1, 0);
+                g.DrawImage(cenrigh, b.Width - toprigh.Width - 1, toprigh.Height, cenrigh.Width, b.Height - toprigh.Height);
+            }
 
             g.Dispose();
 
             b.RotateFlip(Rotation);
-            return b;
+
+            Bitmap returning = new Bitmap(Rectangle.Width, Rectangle.Height);
+            var rg = Graphics.FromImage(returning);
+            rg.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
+            rg.DrawImage(b, 0, 0, Rectangle.Width, Rectangle.Height);
+            b.Dispose();
+            rg.Dispose();
+
+            return returning;
         }
 
-        public Rectangle Rectangle { get; set; } = new Rectangle(32, 32, 32, 128);
+        public Rectangle Rectangle { get; set; } = new Rectangle(32, 32, 128, 512);
         public Rectangle GetRectangle()
         {
             return Rectangle;

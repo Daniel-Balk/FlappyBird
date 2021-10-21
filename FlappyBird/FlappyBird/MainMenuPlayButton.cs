@@ -13,7 +13,7 @@ namespace FlappyBird
 
         public void Click()
         {
-            System.Windows.Forms.MessageBox.Show("Yay, Click!");
+            FlappyBirdApplication.Playing = true;
         }
 
         public void DoPhysics()
@@ -24,12 +24,15 @@ namespace FlappyBird
         public Bitmap GetFrame()
         {
             Bitmap b = new Bitmap(GetRectangle().Width, GetRectangle().Height);
-            Graphics g = Graphics.FromImage(b);
-            if(!hover)
-            g.DrawImage(Properties.Resources.PlayButton, 0, 0, b.Width, b.Height);
-            else
-                g.DrawImage(Properties.Resources.HoverPlayButton, 0, 0, b.Width, b.Height);
-            g.Dispose();
+            if (!FlappyBirdApplication.Playing)
+            {
+                Graphics g = Graphics.FromImage(b);
+                if (!hover)
+                    g.DrawImage(Properties.Resources.PlayButton, 0, 0, b.Width, b.Height);
+                else
+                    g.DrawImage(Properties.Resources.HoverPlayButton, 0, 0, b.Width, b.Height);
+                g.Dispose();
+            }
             if (hover)
                 hover = false;
             return b;
