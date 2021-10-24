@@ -88,7 +88,6 @@ namespace FlappyBird
             Compounds.Add(birdEventCollector);
             Compounds.Add(plb);
             FlappyMapLoader.LoadOn(Compounds);
-            MessageBox.Show(Compounds.Count.ToString());
             Thread upd = null;
             upd = new Thread(new ThreadStart(() =>
         {
