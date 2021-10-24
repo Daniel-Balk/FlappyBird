@@ -62,7 +62,7 @@ namespace FlappyBird
             return returning;
         }
 
-        public Rectangle Rectangle = new Rectangle(32, 32, 68, 68);
+        public Rectangle Rectangle = new Rectangle(32, 256, 68, 68);
         public Rectangle GetRectangle()
         {
             return Rectangle;
