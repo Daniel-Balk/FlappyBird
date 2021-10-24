@@ -15,6 +15,8 @@ namespace FlappyBird
         static List<IFlappyCompound> Compounds { get; set; } = new List<IFlappyCompound>();
         public static int MainMenuZ = 404;
         public static int MainMenuButtonZ = 500;
+        public static int BirdZ =7500;
+        internal static int EventControllerZ = 100;
         static Dictionary<int, bool> Values { get; set; } = new Dictionary<int, bool>()
         {
             {
@@ -32,6 +34,7 @@ namespace FlappyBird
         }
         public static Color BackColor { get; set; } = Color.FromArgb(0x00, 0x95, 0xDB);
         public static bool Playing { get; set; } = false;
+        static Point lastHov = new Point(0, 0);
         public static void Render(Graphics g, int width, int height)
         {
             if (!Values[0])
@@ -74,13 +77,18 @@ namespace FlappyBird
             Values[1] = true;
         }
 
-        static readonly MainMenuPlayButton plb = new MainMenuPlayButton();
-        static readonly MainMenuDisplay mmd = new MainMenuDisplay();
+        internal static readonly MainMenuPlayButton plb = new MainMenuPlayButton();
+        internal static readonly MainMenuDisplay mmd = new MainMenuDisplay();
+        internal static readonly Bird bird = new Bird();
+        internal static readonly BirdController birdEventCollector = new BirdController();
         public static void Setup()
         {
             Compounds.Add(mmd);
+            Compounds.Add(bird);
+            Compounds.Add(birdEventCollector);
             Compounds.Add(plb);
-            Compounds.Add(new Tube());
+            FlappyMapLoader.LoadOn(Compounds);
+            MessageBox.Show(Compounds.Count.ToString());
             Thread upd = null;
             upd = new Thread(new ThreadStart(() =>
         {
@@ -103,7 +111,6 @@ namespace FlappyBird
         {
             lastHov = point;
         }
-        static Point lastHov = new Point(0, 0);
 
         public void Click(Point point)
         {

@@ -12,7 +12,8 @@ namespace FlappyBird
     {
         public void BeforeRender()
         {
-            
+            if (FlappyBirdApplication.Playing)
+                Rectangle.X--;
         }
 
         public void Click()
@@ -67,7 +68,7 @@ namespace FlappyBird
             return returning;
         }
 
-        public Rectangle Rectangle { get; set; } = new Rectangle(32, 32, 128, 512);
+        public Rectangle Rectangle = new Rectangle(32, 32, 128, 512);
         public Rectangle GetRectangle()
         {
             return Rectangle;

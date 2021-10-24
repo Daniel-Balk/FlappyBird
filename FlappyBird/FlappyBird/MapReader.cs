@@ -7,9 +7,10 @@ namespace FlappyBird
     public class MapReader
     {
         #region Loader
-        public MapReader(string xml)
+        public MapReader(string file)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(Flappymap));
+            var xml = File.ReadAllText(file);
             using (StringReader reader = new StringReader(xml))
             {
                 var mp = (Flappymap)serializer.Deserialize(reader);

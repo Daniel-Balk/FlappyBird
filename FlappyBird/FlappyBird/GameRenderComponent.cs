@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FlappyBird.Properties;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -28,6 +29,11 @@ namespace FlappyBird
                 }
             }));
             t.Start();
+            var win = FindForm();
+            win.MaximizeBox = false;
+            win.Size = new System.Drawing.Size(1200, 900);
+            win.Icon = Icon.FromHandle(Resources.Bird.GetHicon());
+            win.Text = "Flappy Bird";
         }
 
         private void RunANewRender()
@@ -119,6 +125,7 @@ namespace FlappyBird
             g.DrawString(e.ToString(), Font, b, 0, 0);
             g.Dispose();
             b.Dispose();
+            MessageBox.Show(e.ToString());
         }
 
         private void NotActive()
