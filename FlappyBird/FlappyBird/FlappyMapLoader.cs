@@ -5,10 +5,11 @@ using System.Xml.Serialization;
 
 namespace FlappyBird
 {
+    public delegate void ComponentAdding(IFlappyCompound component);
     public class FlappyMapLoader
     {
         public static string MapFile { get; set; } = "TestMap.xml";
-        public static void LoadOn(List<IFlappyCompound> compounds)
+        public static void LoadOn(ComponentAdding add)
         {
             #region Get a default map to test
             /*Flappymap m = new Flappymap()
@@ -101,33 +102,39 @@ namespace FlappyBird
             Flappymap map = new MapReader(MapFile).FlappyMap;
             foreach (var @object in map.Map.Bottom.Object)
             {
-                AddBotomObject(@object, compounds);
+                AddBotomObject(@object, add);
             }
             foreach (var @object in map.Map.Top.Object)
             {
-                AddTopObject(@object, compounds);
+                AddTopObject(@object, add);
             }
         }
 
-        private static void AddBotomObject(Object i, List<IFlappyCompound> compounds)
+        private static void AddBotomObject(Object i, ComponentAdding add)
         {
             Tube t = new Tube();
-            t.Rectangle.Width = i.Size.Width;
-            t.Rectangle.Height = i.Size.Height;
-            t.Rectangle.X = i.Position.X;
-            t.Rectangle.Y = i.Position.Y;
             t.Rotation = System.Drawing.RotateFlipType.RotateNoneFlipNone;
-            compounds.Add(t);
+            t.Rectangle = new System.Drawing.Rectangle()
+            {
+                Height = i.Size.Height,
+                Width = i.Size.Width,
+                X = i.Position.X,
+                Y = i.Position.Y
+            };
+            add(t);
         }
-        private static void AddTopObject(Object i, List<IFlappyCompound> compounds)
+        private static void AddTopObject(Object i, ComponentAdding add)
         {
             Tube t = new Tube();
-            t.Rectangle.Width = i.Size.Width;
-            t.Rectangle.Height = i.Size.Height;
-            t.Rectangle.X = i.Position.X;
-            t.Rectangle.Y = i.Position.Y;
             t.Rotation = System.Drawing.RotateFlipType.RotateNoneFlipY;
-            compounds.Add(t);
+            t.Rectangle = new System.Drawing.Rectangle()
+            {
+                Height = i.Size.Height,
+                Width = i.Size.Width,
+                X = i.Position.X,
+                Y = i.Position.Y
+            };
+            add(t);
         }
     }
 }

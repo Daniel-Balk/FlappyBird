@@ -15,7 +15,7 @@ namespace FlappyBird
         static List<IFlappyCompound> Compounds { get; set; } = new List<IFlappyCompound>();
         public static int MainMenuZ = 404;
         public static int MainMenuButtonZ = 500;
-        public static int BirdZ =7500;
+        public static int BirdZ = 7500;
         internal static int EventControllerZ = 100;
         static Dictionary<int, bool> Values { get; set; } = new Dictionary<int, bool>()
         {
@@ -87,22 +87,25 @@ namespace FlappyBird
             Compounds.Add(bird);
             Compounds.Add(birdEventCollector);
             Compounds.Add(plb);
-            FlappyMapLoader.LoadOn(Compounds);
+            FlappyMapLoader.LoadOn(new ComponentAdding((e) =>
+            {
+                Compounds.Add(e);
+            }));
             Thread upd = null;
             upd = new Thread(new ThreadStart(() =>
-        {
-            while (true)
             {
-                if (Values[1])
-                    break;
-                foreach (var c in Compounds)
+                while (true)
                 {
-                    c.Update();
+                    if (Values[1])
+                        break;
+                    foreach (var c in Compounds)
+                    {
+                        c.Update();
+                    }
+                    Thread.Sleep(100);
                 }
-                Thread.Sleep(100);
-            }
-            upd.Abort();
-        }));
+                upd.Abort();
+            }));
             upd.Start();
         }
 

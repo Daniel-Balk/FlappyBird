@@ -19,7 +19,7 @@ namespace FlappyBird
 
         public void StartJump()
         {
-            upspeed = 500;
+            upspeed = 250;
         }
         int upspeed = 0;
 
@@ -27,7 +27,7 @@ namespace FlappyBird
         {
             if (FlappyBirdApplication.Playing)
             {
-                int i = upspeed / (-100);
+                int i = upspeed / (-50);
                 if (Rectangle.Y + i > 0)
                     if (Rectangle.Y + i < 900 - Rectangle.Height)
                         Rectangle.Y += i;
@@ -89,8 +89,8 @@ namespace FlappyBird
                         if (FlappyBirdApplication.Playing)
                         {
                             upspeed--;
-                            if (upspeed == 100)
-                                upspeed = -70;
+                            if (upspeed == 50)
+                                upspeed = -50;
                         }
                         Thread.Sleep(1);
                     }

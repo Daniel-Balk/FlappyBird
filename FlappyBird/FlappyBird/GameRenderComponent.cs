@@ -125,7 +125,6 @@ namespace FlappyBird
             g.DrawString(e.ToString(), Font, b, 0, 0);
             g.Dispose();
             b.Dispose();
-            MessageBox.Show(e.ToString());
         }
 
         private void NotActive()
