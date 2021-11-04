@@ -1,4 +1,5 @@
 ﻿using FlappyBird.Engine;
+using System;
 using System.Drawing;
 
 namespace FlappyBird.Menu
@@ -23,13 +24,10 @@ namespace FlappyBird.Menu
 
         public Bitmap GetFrame()
         {
-            Bitmap b = new Bitmap(GetRectangle().Width, GetRectangle().Height);
-            var g = Graphics.FromImage(b);
             if (Show)
                 if (FlappyBirdApplication.Playing == ComponentActivityMode.Menu)
-                    g.DrawImage(Properties.Resources.MainMenu, 0, 0);
-            g.Dispose();
-            return b;
+                    return Properties.Resources.MainMenu;
+            return new Bitmap(GetRectangle().Width, GetRectangle().Height);
         }
 
         Rectangle rect = new Rectangle(0, 0, 1200, 900);

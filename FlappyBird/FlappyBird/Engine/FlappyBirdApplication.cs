@@ -90,6 +90,7 @@ namespace FlappyBird.Engine
         internal static readonly Bird bird = new Bird();
         internal static readonly BirdController birdEventCollector = new BirdController();
         internal static readonly DeathDisplay deathDisplay = new DeathDisplay();
+        internal static readonly BackgroundImage bg = new BackgroundImage();
         public static void Setup()
         {
             Compounds.Add(mmd);
@@ -97,6 +98,7 @@ namespace FlappyBird.Engine
             Compounds.Add(birdEventCollector);
             Compounds.Add(plb);
             Compounds.Add(deathDisplay);
+            Compounds.Add(bg);
             FlappyMapLoader.LoadOn(new ComponentAdding((e) =>
             {
                 Compounds.Add(e);

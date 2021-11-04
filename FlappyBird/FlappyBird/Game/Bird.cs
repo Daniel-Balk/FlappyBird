@@ -30,7 +30,7 @@ namespace FlappyBird.Game
                 int i = upspeed / (-50);
                 if (Rectangle.Y + i > 0)
                     if (Rectangle.Y + i < 900 - Rectangle.Height)
-                        Rectangle.Y += i;
+                        Rectangle.Y += i*2;
             }
         }
 

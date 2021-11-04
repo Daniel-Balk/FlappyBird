@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FlappyBird.Death
+namespace FlappyBird.Game
 {
-    public class DeathDisplay : IFlappyCompound
+    public class BackgroundImage : IFlappyCompound
     {
         public static bool Show { get; set; } = true;
         public void BeforeRender()
@@ -29,8 +29,8 @@ namespace FlappyBird.Death
         public Bitmap GetFrame()
         {
             if (Show)
-                if (FlappyBirdApplication.Playing == ComponentActivityMode.Dead)
-                    return Properties.Resources.DeathScreen;
+                if (FlappyBirdApplication.Playing == ComponentActivityMode.Playing)
+                    return Properties.Resources.BackImg;
             return new Bitmap(GetRectangle().Width, GetRectangle().Height);
         }
 

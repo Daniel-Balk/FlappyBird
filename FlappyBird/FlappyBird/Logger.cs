@@ -92,12 +92,19 @@ public static class Logger
 
     public static void Error(string message)
     {
-        ColorOutput(ErrorPrefix + message, ErrorColor);
-        if (!File.Exists("error.log"))
-            File.WriteAllText("error.log", "");
-        var wt = File.ReadAllText("error.log");
-        wt += "\n" + message;
-        File.WriteAllText("error.log", wt);
+        try
+        {
+            ColorOutput(ErrorPrefix + message, ErrorColor);
+            if (!File.Exists("error.log"))
+                File.WriteAllText("error.log", "");
+            var wt = File.ReadAllText("error.log");
+            wt += "\n" + message;
+            File.WriteAllText("error.log", wt);
+        }
+        catch (Exception)
+        {
+
+        }
     }
 
     private static void ColorOutput(string p, ConsoleColor color)
