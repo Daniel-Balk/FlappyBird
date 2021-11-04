@@ -21,93 +21,113 @@ namespace FlappyBird
         public Flappymap FlappyMap { get; set; }
     }
 
-    #region Declaration
-    [XmlRoot(ElementName = "difficulty")]
-    public class Difficulty
-    {
+	#region Declaration
+	[XmlRoot(ElementName = "difficulty")]
+	public class Difficulty
+	{
 
-        [XmlElement(ElementName = "name")]
-        public string Name { get; set; }
+		[XmlElement(ElementName = "name")]
+		public string Name { get; set; }
 
-        [XmlElement(ElementName = "integer")]
-        public int Integer { get; set; }
-    }
-    [XmlRoot(ElementName = "flappyconfig")]
-    public class Flappyconfig
-    {
+		[XmlElement(ElementName = "integer")]
+		public int Integer { get; set; }
+	}
 
-        [XmlElement(ElementName = "title")]
-        public string Title { get; set; }
+	[XmlRoot(ElementName = "flappyconfig")]
+	public class Flappyconfig
+	{
 
-        [XmlElement(ElementName = "difficulty")]
-        public Difficulty Difficulty { get; set; }
+		[XmlElement(ElementName = "title")]
+		public string Title { get; set; }
 
-        [XmlElement(ElementName = "version")]
-        public string Version { get; set; }
-    }
-    [XmlRoot(ElementName = "position")]
-    public class Position
-    {
+		[XmlElement(ElementName = "difficulty")]
+		public Difficulty Difficulty { get; set; }
 
-        [XmlElement(ElementName = "x")]
-        public int X { get; set; }
+		[XmlElement(ElementName = "version")]
+		public string Version { get; set; }
+	}
 
-        [XmlElement(ElementName = "y")]
-        public int Y { get; set; }
-    }
-    [XmlRoot(ElementName = "size")]
-    public class Size
-    {
+	[XmlRoot(ElementName = "position")]
+	public class Position
+	{
 
-        [XmlElement(ElementName = "width")]
-        public int Width { get; set; }
+		[XmlElement(ElementName = "x")]
+		public int X { get; set; }
 
-        [XmlElement(ElementName = "height")]
-        public int Height { get; set; }
-    }
-    [XmlRoot(ElementName = "object")]
-    public class Object
-    {
+		[XmlElement(ElementName = "y")]
+		public int Y { get; set; }
+	}
 
-        [XmlElement(ElementName = "position")]
-        public Position Position { get; set; }
+	[XmlRoot(ElementName = "size")]
+	public class Size
+	{
 
-        [XmlElement(ElementName = "size")]
-        public Size Size { get; set; }
-    }
-    [XmlRoot(ElementName = "top")]
-    public class Top
-    {
+		[XmlElement(ElementName = "width")]
+		public int Width { get; set; }
 
-        [XmlElement(ElementName = "object")]
-        public List<Object> Object { get; set; }
-    }
-    [XmlRoot(ElementName = "bottom")]
-    public class Bottom
-    {
+		[XmlElement(ElementName = "height")]
+		public int Height { get; set; }
+	}
 
-        [XmlElement(ElementName = "object")]
-        public List<Object> Object { get; set; }
-    }
-    [XmlRoot(ElementName = "map")]
-    public class Map
-    {
+	[XmlRoot(ElementName = "object")]
+	public class Object
+	{
 
-        [XmlElement(ElementName = "top")]
-        public Top Top { get; set; }
+		[XmlElement(ElementName = "position")]
+		public Position Position { get; set; }
 
-        [XmlElement(ElementName = "bottom")]
-        public Bottom Bottom { get; set; }
-    }
-    [XmlRoot(ElementName = "flappymap")]
-    public class Flappymap
-    {
+		[XmlElement(ElementName = "size")]
+		public Size Size { get; set; }
+	}
 
-        [XmlElement(ElementName = "flappyconfig")]
-        public Flappyconfig Flappyconfig { get; set; }
+	[XmlRoot(ElementName = "top")]
+	public class Top
+	{
 
-        [XmlElement(ElementName = "map")]
-        public Map Map { get; set; }
-    }
-    #endregion
+		[XmlElement(ElementName = "object")]
+		public List<Object> Object { get; set; }
+	}
+
+	[XmlRoot(ElementName = "bottom")]
+	public class Bottom
+	{
+
+		[XmlElement(ElementName = "object")]
+		public List<Object> Object { get; set; }
+	}
+
+	[XmlRoot(ElementName = "map")]
+	public class Map
+	{
+
+		[XmlElement(ElementName = "top")]
+		public Top Top { get; set; }
+
+		[XmlElement(ElementName = "bottom")]
+		public Bottom Bottom { get; set; }
+
+		[XmlElement(ElementName = "end")]
+		public int End { get; set; }
+	}
+
+	[XmlRoot(ElementName = "flappymap")]
+	public class Flappymap
+	{
+
+		[XmlElement(ElementName = "flappyconfig")]
+		public Flappyconfig Flappyconfig { get; set; }
+
+		[XmlElement(ElementName = "map")]
+		public Map Map { get; set; }
+
+		[XmlAttribute(AttributeName = "xsd")]
+		public string Xsd { get; set; }
+
+		[XmlAttribute(AttributeName = "xsi")]
+		public string Xsi { get; set; }
+
+		[XmlText]
+		public string Text { get; set; }
+	}
+	#endregion
 }

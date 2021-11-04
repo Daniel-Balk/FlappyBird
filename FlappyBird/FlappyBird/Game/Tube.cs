@@ -128,7 +128,7 @@ namespace FlappyBird.Game
                 {
                     FlappyBirdApplication.Playing = ComponentActivityMode.Dead;
                 }
-                if (FlappyBirdApplication.Playing == ComponentActivityMode.Dead)
+                if (FlappyBirdApplication.Playing == ComponentActivityMode.Dead || FlappyBirdApplication.Playing == ComponentActivityMode.Win)
                 {
                     Usability = false;
                 }

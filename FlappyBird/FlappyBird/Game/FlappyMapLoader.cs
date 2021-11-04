@@ -109,6 +109,9 @@ namespace FlappyBird.Game
             {
                 AddTopObject(@object, add);
             }
+            WinCollider wc = new WinCollider();
+            wc.rect.X = map.Map.End;
+            add(wc);
         }
 
         private static void AddBotomObject(Object i, ComponentAdding add)

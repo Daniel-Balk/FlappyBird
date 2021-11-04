@@ -16,7 +16,8 @@ namespace FlappyBird.Engine
     {
         Playing,
         Dead,
-        Menu
+        Menu,
+        Win
     }
     public class FlappyBirdApplication
     {

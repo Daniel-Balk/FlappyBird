@@ -25,19 +25,19 @@ namespace FlappyBird.Menu
 
         public Bitmap GetFrame()
         {
-            Bitmap b = new Bitmap(GetRectangle().Width, GetRectangle().Height);
             if (FlappyBirdApplication.Playing == ComponentActivityMode.Menu)
             {
-                Graphics g = Graphics.FromImage(b);
                 if (!hover)
-                    g.DrawImage(Properties.Resources.PlayButton, 0, 0, b.Width, b.Height);
+                {
+                    return Properties.Resources.PlayButton;
+                }
                 else
-                    g.DrawImage(Properties.Resources.HoverPlayButton, 0, 0, b.Width, b.Height);
-                g.Dispose();
+                {
+                    hover = false;
+                    return Properties.Resources.HoverPlayButton;
+                }
             }
-            if (hover)
-                hover = false;
-            return b;
+            return new Bitmap(GetRectangle().Width, GetRectangle().Height);
         }
 
         Rectangle rect = new Rectangle(1200/2-112/2, 900 / 2 - 56 / 2 + 30, 112, 56);

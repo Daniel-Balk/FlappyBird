@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>ICON.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -63,6 +66,7 @@
     <Compile Include="Engine\GameRenderComponent.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Game\WinCollider.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Engine\IFlappyCompound.cs" />
     <Compile Include="Logger.cs" />
@@ -114,6 +118,7 @@
     <None Include="Resources\CenterLeft.png" />
     <None Include="Resources\CenterRight.png" />
     <None Include="Resources\Bird.png" />
+    <Content Include="ICON.ico" />
     <Content Include="Resources\MainMenu.png" />
     <None Include="Resources\PlayButton.png" />
   </ItemGroup>
