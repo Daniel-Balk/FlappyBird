@@ -15,7 +15,7 @@ namespace FlappyBird.Game
         {
             if (Usability)
                 if (FlappyBirdApplication.Playing == ComponentActivityMode.Playing)
-                    rect.X-=2;
+                    rect.X-=1;
         }
 
         public void Click()

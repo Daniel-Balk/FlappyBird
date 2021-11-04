@@ -40,7 +40,7 @@ namespace FlappyBird.Menu
             return b;
         }
 
-        Rectangle rect = new Rectangle(1200/2-128/2, 900 / 2 - 128 / 2, 128, 128);
+        Rectangle rect = new Rectangle(1200/2-112/2, 900 / 2 - 56 / 2 + 30, 112, 56);
         public Rectangle GetRectangle()
         {
             return rect;
