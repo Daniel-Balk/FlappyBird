@@ -9,7 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FlappyBird
+namespace FlappyBird.Engine
 {
     public class GameRenderComponent : Control
     {
@@ -119,12 +119,15 @@ namespace FlappyBird
 
         private void RenderError(Exception e)
         {
+            /*
             var g = CreateGraphics();
             var b = new SolidBrush(ForeColor);
             g.Clear(BackColor);
             g.DrawString(e.ToString(), Font, b, 0, 0);
             g.Dispose();
             b.Dispose();
+            */
+            Logger.Error(e);
         }
 
         private void NotActive()

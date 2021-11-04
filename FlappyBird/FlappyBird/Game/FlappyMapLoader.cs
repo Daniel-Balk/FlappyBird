@@ -1,9 +1,10 @@
-﻿using System;
+﻿using FlappyBird.Engine;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
 
-namespace FlappyBird
+namespace FlappyBird.Game
 {
     public delegate void ComponentAdding(IFlappyCompound component);
     public class FlappyMapLoader

@@ -1,8 +1,9 @@
-﻿using FlappyBird.Properties;
+﻿using FlappyBird.Engine;
+using FlappyBird.Properties;
 using System.Drawing;
 using System.Threading;
 
-namespace FlappyBird
+namespace FlappyBird.Game
 {
     public class Bird : IFlappyCompound
     {
@@ -13,8 +14,7 @@ namespace FlappyBird
 
         public void Click()
         {
-            if (FlappyBirdApplication.Playing)
-                StartJump();
+
         }
 
         public void StartJump()
@@ -25,7 +25,7 @@ namespace FlappyBird
 
         public void DoPhysics()
         {
-            if (FlappyBirdApplication.Playing)
+            if (FlappyBirdApplication.Playing == ComponentActivityMode.Playing)
             {
                 int i = upspeed / (-50);
                 if (Rectangle.Y + i > 0)
@@ -43,7 +43,7 @@ namespace FlappyBird
 
             g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
 
-            if (FlappyBirdApplication.Playing)
+            if (FlappyBirdApplication.Playing == ComponentActivityMode.Playing)
             {
                 g.DrawImage(Resources.Bird, 0, 0, b.Width, b.Height);
             }
@@ -67,7 +67,7 @@ namespace FlappyBird
         {
             return Rectangle;
         }
-        public int Z { get; set; } = FlappyBirdApplication.BirdZ;
+        public int Z { get; set; } = FlappyBirdApplication.BirdZ++;
         public int GetZ()
         {
             return Z;
@@ -86,7 +86,7 @@ namespace FlappyBird
                 {
                     while (true)
                     {
-                        if (FlappyBirdApplication.Playing)
+                        if (FlappyBirdApplication.Playing == ComponentActivityMode.Playing)
                         {
                             upspeed--;
                             if (upspeed == 50)

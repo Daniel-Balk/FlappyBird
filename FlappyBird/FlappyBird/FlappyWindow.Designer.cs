@@ -1,5 +1,4 @@
-﻿
-namespace FlappyBird
+﻿namespace FlappyBird
 {
     partial class FlappyWindow
     {
@@ -29,8 +28,8 @@ namespace FlappyBird
         /// </summary>
         private void InitializeComponent()
         {
-            FlappyBird.FlappyBirdApplication flappyBirdApplication1 = new FlappyBird.FlappyBirdApplication();
-            this.gameRenderComponent1 = new FlappyBird.GameRenderComponent();
+            FlappyBird.Engine.FlappyBirdApplication flappyBirdApplication1 = new FlappyBird.Engine.FlappyBirdApplication();
+            this.gameRenderComponent1 = new FlappyBird.Engine.GameRenderComponent();
             this.SuspendLayout();
             // 
             // gameRenderComponent1
@@ -62,7 +61,6 @@ namespace FlappyBird
 
         #endregion
 
-        private GameRenderComponent gameRenderComponent1;
+        private Engine.GameRenderComponent gameRenderComponent1;
     }
 }
-

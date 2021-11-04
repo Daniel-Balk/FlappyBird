@@ -6,13 +6,21 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FlappyBird.Death;
+using FlappyBird.Game;
+using FlappyBird.Menu;
 
-namespace FlappyBird
+namespace FlappyBird.Engine
 {
+    public enum ComponentActivityMode
+    {
+        Playing,
+        Dead,
+        Menu
+    }
     public class FlappyBirdApplication
     {
-
-        static List<IFlappyCompound> Compounds { get; set; } = new List<IFlappyCompound>();
+        public static List<IFlappyCompound> Compounds { get; set; } = new List<IFlappyCompound>();
         public static int MainMenuZ = 404;
         public static int MainMenuButtonZ = 500;
         public static int BirdZ = 7500;
@@ -33,7 +41,7 @@ namespace FlappyBird
             Render(g, width, height);
         }
         public static Color BackColor { get; set; } = Color.FromArgb(0x00, 0x95, 0xDB);
-        public static bool Playing { get; set; } = false;
+        public static ComponentActivityMode Playing { get; set; } = ComponentActivityMode.Menu;
         static Point lastHov = new Point(0, 0);
         public static void Render(Graphics g, int width, int height)
         {
@@ -81,12 +89,14 @@ namespace FlappyBird
         internal static readonly MainMenuDisplay mmd = new MainMenuDisplay();
         internal static readonly Bird bird = new Bird();
         internal static readonly BirdController birdEventCollector = new BirdController();
+        internal static readonly DeathDisplay deathDisplay = new DeathDisplay();
         public static void Setup()
         {
             Compounds.Add(mmd);
             Compounds.Add(bird);
             Compounds.Add(birdEventCollector);
             Compounds.Add(plb);
+            Compounds.Add(deathDisplay);
             FlappyMapLoader.LoadOn(new ComponentAdding((e) =>
             {
                 Compounds.Add(e);

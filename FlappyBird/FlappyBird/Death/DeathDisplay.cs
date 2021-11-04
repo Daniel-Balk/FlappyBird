@@ -1,10 +1,15 @@
-﻿using System.Drawing;
+﻿using FlappyBird.Engine;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace FlappyBird
+namespace FlappyBird.Death
 {
-    public class MainMenuDisplay : IFlappyCompound
+    public class DeathDisplay : IFlappyCompound
     {
-        public static bool Show { get; set; } = true;
         public void BeforeRender()
         {
 
@@ -22,13 +27,9 @@ namespace FlappyBird
 
         public Bitmap GetFrame()
         {
-            Bitmap b = new Bitmap(GetRectangle().Width, GetRectangle().Height);
-            var g = Graphics.FromImage(b);
-            if (Show)
-                if (!FlappyBirdApplication.Playing)
-                    g.DrawImage(Properties.Resources.MainMenu, 0, 0);
-            g.Dispose();
-            return b;
+            if (FlappyBirdApplication.Playing == ComponentActivityMode.Dead)
+                return Properties.Resources.DeathScreen;
+            return new Bitmap(GetRectangle().Width, GetRectangle().Height);
         }
 
         Rectangle rect = new Rectangle(0, 0, 1200, 900);
@@ -37,9 +38,10 @@ namespace FlappyBird
             return rect;
         }
 
+        int z = FlappyBirdApplication.MainMenuZ++;
         public int GetZ()
         {
-            return FlappyBirdApplication.MainMenuZ;
+            return z;
         }
 
         public void Update()
@@ -49,7 +51,7 @@ namespace FlappyBird
 
         public void Hover()
         {
-            
+
         }
     }
 }

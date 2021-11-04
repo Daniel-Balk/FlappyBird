@@ -1,4 +1,5 @@
-﻿using FlappyBird.Properties;
+﻿using FlappyBird.Engine;
+using FlappyBird.Properties;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -6,17 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FlappyBird
+namespace FlappyBird.Game
 {
     public class Tube : IFlappyCompound
     {
         public void BeforeRender()
         {
-            if (Rectangle.IntersectsWith(FlappyBirdApplication.bird.Rectangle))
-            {
-            }
-            if (FlappyBirdApplication.Playing)
-                rect.X--;
+            if (Usability)
+                if (FlappyBirdApplication.Playing == ComponentActivityMode.Playing)
+                    rect.X--;
         }
 
         public void Click()
@@ -75,12 +74,13 @@ namespace FlappyBird
                 SetTexture();
 
             Bitmap returning = new Bitmap(Rectangle.Width, Rectangle.Height);
+
             var rg = Graphics.FromImage(returning);
             rg.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
-            if (FlappyBirdApplication.Playing)
-                rg.DrawImage(Texture, 0, 0, Rectangle.Width, Rectangle.Height);
+            if (Usability)
+                if (FlappyBirdApplication.Playing == ComponentActivityMode.Playing)
+                    rg.DrawImage(Texture, 0, 0, Rectangle.Width, Rectangle.Height);
             rg.Dispose();
-
             return returning;
         }
 
@@ -99,12 +99,17 @@ namespace FlappyBird
             }
         }
 
+        Rectangle noApp = new Rectangle(-100, -100, 1, 1);
         public Rectangle GetRectangle()
         {
-            return Rectangle;
+            if (Usability)
+                return Rectangle;
+            return noApp;
         }
         public static int StaticZ { get; set; } = 512;
         public int Z { get; set; } = StaticZ++;
+        public bool Usability { get; set; } = true;
+
         public int GetZ()
         {
             return Z;
@@ -117,7 +122,17 @@ namespace FlappyBird
 
         public void Update()
         {
-
+            if (Usability)
+            {
+                if (Rectangle.IntersectsWith(FlappyBirdApplication.bird.Rectangle))
+                {
+                    FlappyBirdApplication.Playing = ComponentActivityMode.Dead;
+                }
+                if (FlappyBirdApplication.Playing == ComponentActivityMode.Dead)
+                {
+                    Usability = false;
+                }
+            }
         }
     }
 }

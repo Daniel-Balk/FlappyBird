@@ -14,7 +14,7 @@ namespace FlappyBird
         [STAThread]
         static void Main()
         {
-            MemourySaver.Save();
+            Engine.MemourySaver.Save();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FlappyWindow());

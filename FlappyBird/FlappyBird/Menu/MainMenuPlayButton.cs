@@ -1,7 +1,8 @@
-﻿using System.Diagnostics;
+﻿using FlappyBird.Engine;
+using System.Diagnostics;
 using System.Drawing;
 
-namespace FlappyBird
+namespace FlappyBird.Menu
 {
     public class MainMenuPlayButton : IFlappyCompound
     {
@@ -13,7 +14,8 @@ namespace FlappyBird
 
         public void Click()
         {
-            FlappyBirdApplication.Playing = true;
+            if (FlappyBirdApplication.Playing == ComponentActivityMode.Menu)
+                FlappyBirdApplication.Playing = ComponentActivityMode.Playing;
         }
 
         public void DoPhysics()
@@ -24,7 +26,7 @@ namespace FlappyBird
         public Bitmap GetFrame()
         {
             Bitmap b = new Bitmap(GetRectangle().Width, GetRectangle().Height);
-            if (!FlappyBirdApplication.Playing)
+            if (FlappyBirdApplication.Playing == ComponentActivityMode.Menu)
             {
                 Graphics g = Graphics.FromImage(b);
                 if (!hover)
@@ -44,9 +46,10 @@ namespace FlappyBird
             return rect;
         }
 
+        int z = FlappyBirdApplication.MainMenuButtonZ++;
         public int GetZ()
         {
-            return FlappyBirdApplication.MainMenuButtonZ;
+            return z;
         }
 
         bool hover = false;

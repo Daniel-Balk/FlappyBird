@@ -1,11 +1,12 @@
-﻿using System;
+﻿using FlappyBird.Engine;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FlappyBird
+namespace FlappyBird.Game
 {
     public class BirdController : IFlappyCompound
     {
@@ -16,7 +17,8 @@ namespace FlappyBird
 
         public void Click()
         {
-            FlappyBirdApplication.bird.StartJump();
+            if (FlappyBirdApplication.Playing == ComponentActivityMode.Playing)
+                FlappyBirdApplication.bird.StartJump();
         }
 
         public void DoPhysics()
@@ -35,9 +37,10 @@ namespace FlappyBird
             return rect;
         }
 
+        int z = FlappyBirdApplication.EventControllerZ++;
         public int GetZ()
         {
-            return FlappyBirdApplication.EventControllerZ;
+            return z;
         }
 
         public void Hover()

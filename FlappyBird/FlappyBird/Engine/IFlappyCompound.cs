@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace FlappyBird
+namespace FlappyBird.Engine
 {
     public interface IFlappyCompound
     {

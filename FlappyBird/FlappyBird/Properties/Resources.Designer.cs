@@ -103,6 +103,16 @@ namespace FlappyBird.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap DeathScreen {
+            get {
+                object obj = ResourceManager.GetObject("DeathScreen", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap HoverPlayButton {
             get {
                 object obj = ResourceManager.GetObject("HoverPlayButton", resourceCulture);
