@@ -68,6 +68,9 @@ namespace FlappyBird.Game
             return Rectangle;
         }
         public int Z { get; set; } = FlappyBirdApplication.BirdZ++;
+
+        public bool IsActive => FlappyBirdApplication.Playing == ComponentActivityMode.Playing;
+
         public int GetZ()
         {
             return Z;

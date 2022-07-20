@@ -10,6 +10,8 @@ namespace FlappyBird.Game
 {
     public class WinCollider : IFlappyCompound
     {
+        public bool IsActive => FlappyBirdApplication.Playing == ComponentActivityMode.Playing;
+
         public void BeforeRender()
         {
             if (Usability)

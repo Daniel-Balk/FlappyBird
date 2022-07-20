@@ -6,6 +6,8 @@ namespace FlappyBird.Menu
 {
     public class MainMenuDisplay : IFlappyCompound
     {
+        public bool IsActive => FlappyBirdApplication.Playing == ComponentActivityMode.Menu;
+
         public static bool Show { get; set; } = true;
         public void BeforeRender()
         {

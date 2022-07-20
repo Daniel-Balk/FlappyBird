@@ -14,6 +14,7 @@ namespace FlappyBird
         [STAThread]
         static void Main()
         {
+            Logging.Net.Logger.UsedLogger.SetAddition(new DebugLogger());
             Engine.MemourySaver.Save();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

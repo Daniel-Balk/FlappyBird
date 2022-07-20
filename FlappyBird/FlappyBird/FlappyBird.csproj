@@ -38,6 +38,9 @@
     <ApplicationIcon>ICON.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Logging.Net, Version=1.0.0.8, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Logging.Net.1.0.8\lib\net472\Logging.Net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -52,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Death\DeathDisplay.cs" />
+    <Compile Include="DebugLogger.cs" />
     <Compile Include="Game\BackgroundImage.cs" />
     <Compile Include="Game\Bird.cs" />
     <Compile Include="Game\BirdController.cs" />
@@ -69,7 +73,6 @@
     <Compile Include="Game\WinCollider.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Engine\IFlappyCompound.cs" />
-    <Compile Include="Logger.cs" />
     <Compile Include="Menu\MainMenuDisplay.cs" />
     <Compile Include="Menu\MainMenuPlayButton.cs" />
     <Compile Include="MapReader.cs" />
@@ -88,6 +91,7 @@
     <None Include="..\.editorconfig">
       <Link>.editorconfig</Link>
     </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

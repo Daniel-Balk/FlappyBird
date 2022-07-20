@@ -10,6 +10,8 @@ namespace FlappyBird.Game
 {
     public class BackgroundImage : IFlappyCompound
     {
+        public bool IsActive => true;
+
         public static bool Show { get; set; } = true;
         public void BeforeRender()
         {

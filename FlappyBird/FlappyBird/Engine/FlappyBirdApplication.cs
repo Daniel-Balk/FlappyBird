@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using FlappyBird.Death;
 using FlappyBird.Game;
 using FlappyBird.Menu;
+using Logging.Net;
 
 namespace FlappyBird.Engine
 {
@@ -52,22 +53,24 @@ namespace FlappyBird.Engine
                 Setup();
             }
             g.Clear(BackColor);
-            SortedDictionary<int, IFlappyCompound> cps = new SortedDictionary<int, IFlappyCompound>();
-            foreach (var c in Compounds)
+            var cpsx = new IFlappyCompound[Compounds.Count];
+            Compounds.CopyTo(cpsx);
+            var cps = cpsx.ToList();
+            cps.Sort((x, y) => x.GetZ().CompareTo(y.GetZ()));
+
+            foreach (var cl in cps)
             {
-                cps[c.GetZ()] = c;
-            }
-            foreach (var control in cps)
-            {
-                var cl = control.Value;
-                cl.DoPhysics();
-                cl.BeforeRender();
-                if (cl.GetRectangle().IntersectsWith(new Rectangle(lastHov, new System.Drawing.Size(8, 8))))
-                    cl.Hover();
-                var render = cl.GetFrame();
-                var rect = cl.GetRectangle();
-                g.DrawImage(render, rect.X, rect.Y, rect.Width, rect.Height);
-                render.Dispose();
+                if (cl.IsActive)
+                {
+                    cl.DoPhysics();
+                    cl.BeforeRender();
+                    if (cl.GetRectangle().IntersectsWith(new Rectangle(lastHov, new System.Drawing.Size(8, 8))))
+                        cl.Hover();
+                    var render = cl.GetFrame();
+                    var rect = cl.GetRectangle();
+                    g.DrawImage(render, rect.X, rect.Y, rect.Width, rect.Height);
+                    render.Dispose();
+                }
             }
         }
 

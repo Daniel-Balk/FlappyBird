@@ -10,6 +10,8 @@ namespace FlappyBird.Game
 {
     public class BirdController : IFlappyCompound
     {
+        public bool IsActive => FlappyBirdApplication.Playing == ComponentActivityMode.Playing;
+
         public void BeforeRender()
         {
             

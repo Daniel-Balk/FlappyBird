@@ -1,4 +1,5 @@
 ﻿using FlappyBird.Properties;
+using Logging.Net;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -16,6 +17,12 @@ namespace FlappyBird.Engine
         public int MaxFPS { get; set; } = 30;
         public bool Active { get; private set; } = false;
         public FlappyBirdApplication FlappyBird { get; set; } = new FlappyBirdApplication();
+        public static GameRenderComponent Instance { get; set; }
+
+        public GameRenderComponent()
+        {
+            Instance = this;
+        }
 
         public void StartPlaying()
         {
@@ -25,7 +32,7 @@ namespace FlappyBird.Engine
                 while (true)
                 {
                     RunANewRender();
-                    Thread.Sleep(1000 / MaxFPS);
+                    Thread.Sleep(1);
                 }
             }));
             t.Start();
@@ -43,29 +50,22 @@ namespace FlappyBird.Engine
                     if (Width > 0)
                         try
                         {
-                            Thread render = null;
-                            render = new Thread(new ThreadStart(() =>
+                            try
                             {
-                                try
-                                {
-                                    Bitmap image = new Bitmap(Width, Height);
-                                    var g = Graphics.FromImage(image);
-                                    g.Clear(BackColor);
-                                    FlappyBird.PutOn(g, Width, Height);
-                                    var cg = CreateGraphics();
-                                    cg.InterpolationMode = InterpolationMode.NearestNeighbor;
-                                    cg.DrawImage(image, 0, 0, Width, Height);
-                                    cg.Dispose();
-                                    g.Dispose();
-                                    image.Dispose();
-                                }
-                                catch (Exception e)
-                                {
-                                    RenderError(e);
-                                }
-                                render.Abort();
-                            }));
-                            render.Start();
+                                Bitmap image = new Bitmap(Width, Height);
+                                var g = Graphics.FromImage(image);
+                                g.Clear(BackColor);
+                                FlappyBird.PutOn(g, Width, Height);
+                                var cg = CreateGraphics();
+                                cg.DrawImage(image, 0, 0, Width, Height);
+                                cg.Dispose();
+                                g.Dispose();
+                                image.Dispose();
+                            }
+                            catch (Exception e)
+                            {
+                                RenderError(e);
+                            }
                         }
                         catch (Exception e)
                         {

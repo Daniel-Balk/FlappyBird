@@ -10,6 +10,8 @@ namespace FlappyBird.Death
 {
     public class DeathDisplay : IFlappyCompound
     {
+        public bool IsActive => FlappyBirdApplication.Playing == ComponentActivityMode.Dead;
+
         public static bool Show { get; set; } = true;
         public void BeforeRender()
         {

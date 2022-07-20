@@ -12,5 +12,6 @@ namespace FlappyBird.Engine
         void Update();
         void Click();
         void Hover();
+        bool IsActive { get; }
     }
 }

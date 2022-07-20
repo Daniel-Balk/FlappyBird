@@ -11,6 +11,8 @@ namespace FlappyBird.Game
 {
     public class Tube : IFlappyCompound
     {
+        public bool IsActive => FlappyBirdApplication.Playing == ComponentActivityMode.Playing;
+
         public void BeforeRender()
         {
             if (Usability)
